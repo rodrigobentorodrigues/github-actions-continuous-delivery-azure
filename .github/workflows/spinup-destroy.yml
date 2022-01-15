@@ -1,0 +1,56 @@
+name: Configure Azure environment
+
+on: 
+  pull_request:
+    types: [labeled]
+
+env:
+  AZURE_RESOURCE_GROUP: cd-with-actions
+  AZURE_APP_PLAN: actions-ttt-deployment
+  AZURE_LOCATION: '"Central US"'
+  #################################################
+  ### USER PROVIDED VALUES ARE REQUIRED BELOW   ###
+  #################################################
+  #################################################
+  ### REPLACE USERNAME WITH GH USERNAME         ###
+  AZURE_WEBAPP_NAME: rodrigobentorodrigues-ttt-app
+  #################################################
+
+jobs:
+  setup-up-azure-resources:
+    runs-on: ubuntu-latest
+
+    if: contains(github.event.pull_request.labels.*.name, 'spin up environment')
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Create Azure resource group
+        if: success()
+        run: echo "Hello World"
+
+      - name: Create Azure app service plan
+        if: success()
+        run: echo "Hello World"
+
+      - name: Create webapp resource
+        if: success()
+        run: echo "Hello World"
+
+      - name: Configure webapp to use GitHub Packages
+        if: success()
+        run: echo "Hello World"
+
+  destroy-azure-resources:
+    runs-on: ubuntu-latest
+
+    if: contains(github.event.pull_request.labels.*.name, 'destroy environment')
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Destroy Azure environment
+        if: success()
+        run: echo "Hello World"
