@@ -26,11 +26,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Azure login
-        uses: azure/login@v1
-#         with:
-#           creds: ${{ secrets.AZURE_CREDENTIALS }}
-
       - name: Create Azure resource group
         if: success()
         run: echo "Hello World"
@@ -55,11 +50,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-
-      - name: Azure login
-        uses: azure/login@v1
-#         with:
-#           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Destroy Azure environment
         if: success()
